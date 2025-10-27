@@ -1,7 +1,40 @@
+<!--
 <div class="container">
   <img src="catjam.avif" alt="">
   <img src="hackermans.avif" alt="">
   <img src="4x.avif" alt="">
 </div>
+-->
+<app-navbar [itens]="navItens" />
+<div class="container">
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" placeholder="Buscar jogador" aria-label="jogador"
+      aria-describedby="basic-addon2">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button">Buscar</button>
+    </div>
+  </div>
+
+  @for (i of posicaoFiltros; track $index) {
+  <div class="form-check form-check-inline">
+    <input class="form-check-input" type="checkbox" id="inlineCheckbox{{i.nome}}" value={{i.nome}}>
+    <label class="form-check-label" for="inlineCheckbox{{i.nome}}">{{i.nome}}</label>
+  </div>
+  }
+
+
+  <div class="row">
+    @for (jogador of jogadores; track $index) {
+    <div class="col">
+      <app-card [jogador] = "jogador" (escalar)="escalar($event)"/>
+    </div>
+    }
+  </div>
+
+  <app-table [colunas]="colunasTabelaJogadores" [dadosTabela]="escalados" />
+
+
+</div>
+
 
 <router-outlet />

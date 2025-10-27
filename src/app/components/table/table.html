@@ -1,0 +1,18 @@
+<table class="table table-striped">
+    <thead>
+        <tr>
+            @for (c of colunas; track $index) {
+                <th>{{c}}</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @for (item of dadosTabela; track $index) {
+            <tr>
+                @for (i of item | keyvalue; track $index) {
+                    <td>{{i.value}}</td>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
